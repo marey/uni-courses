@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view class="list">
+    <view class="list-item">
+      <text class="black">user name:</text>
+      <text class="black">{{username}}</text>
+    </view>
+    <view class="list-item">
+      <text class="black">user country:</text>
+      <text class="black">{{location_country_name}}</text>
+    </view><view class="list-item">
+      <text class="black">user email:</text>
+      <text class="black">{{email}}</text>
+    </view><view class="list-item">
+      <text class="black">user registr date:</text>
+      <text class="black">{{registration_date}}</text>
+    </view>
+  </view>
+      <!-- 用户 openid -->
+      <view class="userinfo">
+            <button class="userinfo-nickname" bindtap="onGetOpenid">Find Local Projects</button>
+      </view>
+      <view class="userinfo">
+            <button class="userinfo-nickname" bindtap="onFindNearProjects">Find Near Projects</button>
+      </view>
+</view>

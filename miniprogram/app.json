@@ -1,18 +1,28 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
-  }
+      "pages": [
+            "pages/my_courses/index",
+            "pages/answer_chapter/chapter",
+            "pages/answer_classify/classify",
+            "pages/answer_simulate_info/simulate_info",
+            "pages/answer_mark/mark",
+            "pages/answer_simulate_tip/simulate_tip",
+            "pages/answer_info/info",
+            "pages/main/index",
+            "pages/my_course_main/index",
+            "pages/my_course_simulate_exam/index",
+            "pages/index/index",
+            "pages/userConsole/userConsole",
+            "pages/storageConsole/storageConsole",
+            "pages/databaseGuide/databaseGuide",
+            "pages/addFunction/addFunction",
+            "pages/deployFunctions/deployFunctions",
+            "pages/chooseLib/chooseLib"
+      ],
+      "window": {
+            "backgroundColor": "#F6F6F6",
+            "backgroundTextStyle": "light",
+            "navigationBarBackgroundColor": "#F6F6F6",
+            "navigationBarTitleText": "Freelancer Near Job",
+            "navigationBarTextStyle": "black"
+      }
 }

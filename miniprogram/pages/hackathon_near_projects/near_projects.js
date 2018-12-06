@@ -4,22 +4,64 @@ var village_LBS = function (that) {
       wx.getLocation({
             type: 'gcj02', //返回可以用于wx.openLocation的经纬度
             success: function (res) {
+                  
                   const latitude = res.latitude
                   const longitude = res.longitude
                   const speed = res.speed
                   const accuracy = res.accuracy
+
+                  console.log(latitude)
+                  console.log(longitude)
+
                   that.setData({
-                        longitude:longitude,
+                      longitude:longitude,
                         latitude:latitude,
                         markers: [{
-                              iconPath: "/resources/others.png",
+                              iconPath: "/images/current_location.png",
                               id: 0,
+                              latitude: -33.9074592590332,
+                              longitude: 151.22860717773438,
+                              width: 50,
+                              height: 50,
+                              callout: {
+                                    content: "ProjectId0",
+                                     fontSize: "16",
+                                    borderRadius: "10",
+                                     bgColor: "#ffffff",
+                                     padding: "10",
+                                     display: "ALWAYS"
+                               }
+                        }, {
+                                    iconPath: "/images/current_location.png",
+                                    id: 1,
+                                    latitude: -33.91,
+                                    longitude: 151.22,
+                                    width: 50,
+                                    height: 50, 
+                                    callout: {
+                                          content: "ProjectId 2222",
+                                          fontSize: "16",
+                                          borderRadius: "10",
+                                          bgColor: "#ffffff",
+                                          padding: "10",
+                                          display: "ALWAYS"
+                                    }
+                              }, {
+                                    iconPath: "/images/target_location.png",
+                                    id: 2,
+                                    latitude: - 33.94,
+                                    longitude: 151.23,
+                                    width: 50,
+                                    height: 50
+                              }],
+                        circles: [{
                               latitude: latitude,
                               longitude: longitude,
-                              width: 50,
-                              height: 50
-                        }],
-                        openid: getApp().globalData.openid,
+                              color: '#FF0000DD',
+                              fillColor: '#7cb5ec88',
+                              radius: 500,
+                              strokeWidth: 1
+                        }]
                   })
             }
       })
@@ -33,16 +75,13 @@ Page({
             latitude:'',
             markers: [],
             polyline: [],
-            controls: []
+            controls: [],
+            circles: []
       },
-      regionchange(e) {
-            console.log(e.type)
-      },
-      markertap(e) {
-            console.log(e.markerId)
-      },
-      controltap(e) {
-            console.log(e.controlId)
+      callouttap(e) {
+            wx.redirectTo({
+                  url: '../chooseLib/chooseLib?' + e.markerId,
+            })
       },
       onReady: function() {
             var that = this;

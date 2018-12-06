@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="simulate-tx">
+    <image  mode="aspectFill" src="{{userInfo.avatarUrl}}"></image>
+</view>
+<view class="simulate-name">{{userInfo.nickName}}</view>
+<view class="simulate-info">
+    <view> 考试数量：100题</view>
+    <view> 考试时间：120分钟</view>
+    <view> 合格标准：满分100分，50分及格</view>
+</view>
+<navigator url="../../pages/my_course_simulate_exam/index?subject={{subject}}&type={{type}}" redirect class="simulate-btn">开始考试</navigator>

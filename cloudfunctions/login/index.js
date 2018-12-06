@@ -13,19 +13,54 @@ cloud.init()
  * 
  */
 exports.main = (event, context) => {
-  console.log(event)
-  console.log(context)
+      console.log(event)
+      console.log(context)
 
-  // 可执行其他自定义逻辑
-  // console.log 的内容可以在云开发云函数调用日志查看
+      return new Promise((resolve, reject) => {
+            // 可执行其他自定义逻辑
+            // console.log 的内容可以在云开发云函数调用日志查看
 
-  // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
-  const wxContext = cloud.getWXContext()
+            // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
+            const wxContext = cloud.getWXContext()
+            const db = cloud.database()
 
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-  }
+
+            // get the user info
+            var result = null;
+            var result = db.collection('users').where({
+                  open_id: wxContext.OPENID // 填入当前用户 openid
+            }).get()
+                  .then(res => {
+                        result = res.data
+                        console.log()
+                  })
+      })
+
+      // 可执行其他自定义逻辑
+      // console.log 的内容可以在云开发云函数调用日志查看
+
+      // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
+      const wxContext = cloud.getWXContext()
+      const db = cloud.database()
+
+
+      // get the user info
+      var result = null;
+      var result = db.collection('users').where({
+                  open_id: wxContext.OPENID // 填入当前用户 openid
+            }).get()
+            .then(res => {
+                  result = res.data
+            })
+      // out put the log
+      console.log("=========================")
+      console.log(result)
+
+
+      return {
+            event,
+            openid: wxContext.OPENID,
+            appid: wxContext.APPID,
+            unionid: wxContext.UNIONID,
+      }
 }
