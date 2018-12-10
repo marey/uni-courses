@@ -1,5 +1,7 @@
 {
       "pages": [
+            "pages/start/start",
+            "pages/index/index",
             "pages/my_courses/index",
             "pages/answer_chapter/chapter",
             "pages/answer_classify/classify",
@@ -10,19 +12,42 @@
             "pages/main/index",
             "pages/my_course_main/index",
             "pages/my_course_simulate_exam/index",
-            "pages/index/index",
             "pages/userConsole/userConsole",
             "pages/storageConsole/storageConsole",
             "pages/databaseGuide/databaseGuide",
             "pages/addFunction/addFunction",
-            "pages/deployFunctions/deployFunctions",
-            "pages/chooseLib/chooseLib"
+            "pages/chooseLib/chooseLib",
+            "pages/news_view/index"
       ],
       "window": {
             "backgroundColor": "#F6F6F6",
             "backgroundTextStyle": "light",
             "navigationBarBackgroundColor": "#F6F6F6",
-            "navigationBarTitleText": "Freelancer Near Job",
+            "navigationBarTitleText": "高分必备题库",
             "navigationBarTextStyle": "black"
+      },
+      "tabBar": {
+            "color": "#000",
+            "selectedColor": "#000",
+            "borderStyle": "black",
+            "list": [
+                  {
+                        "pagePath": "pages/index/index",
+                        "text": "首页",
+                        "iconPath": "/images/index_unsel.png",
+                        "selectedIconPath": "images/index_sel.png"
+                  },
+                  {
+                        "pagePath": "pages/my_courses/index",
+                        "text": "我的课程",
+                        "iconPath": "/images/my_course_unsel.png",
+                        "selectedIconPath": "images/my_course_sel.png"
+                  },{
+                        "pagePath": "pages/my_courses/index",
+                        "text": "我的设置",
+                        "iconPath": "/images/my_setting_unsel.png",
+                        "selectedIconPath": "images/my_setting_sel.png"
+                  }
+            ]
       }
 }

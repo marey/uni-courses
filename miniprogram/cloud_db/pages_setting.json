@@ -1,0 +1,16 @@
+{
+      "url": "pages/index/index",
+      "setting": {
+            "swiper": {
+                  "imgUrls": [
+                        "https: //756e-uni-courses-59eab4-1258182215.tcb.qcloud.la/main_1.png?sign=17cae4d49b9c2da2f9585b40c4a8417e&t=1544407603",
+                        "/images/main_2.jpeg",
+                        "/images/main_3.png"
+                  ],
+                  "indicatorDots": true,
+                  "autoplay": true,
+                  "interval": 5000,
+                  "duration": 1000
+            }
+      }
+}

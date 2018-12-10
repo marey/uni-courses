@@ -28,7 +28,40 @@ Page({
                   score_max: 0, // 最高得分
                   num_collection: 0, //收藏题数
                   num_wrong_answer: 0, //答错题数
-            }]
+            }],
+            column: [{
+                  class: 'num',
+                  option: []
+            }],
+      },
+      onLoad(params) {
+            console.log("page load params:", params)
+
+            var that = this
+            
+            // 绑定下方的新闻列表
+            wx.cloud.callFunction({
+                  // 要调用的云函数名称
+                  name: 'get_news_list',
+                  // 传递给云函数的event参数
+                  data: {
+                        course_code: params.course_code
+                  }
+            }).then(res => {
+
+                  // output: res.result === 3
+                  console.log('callFunction get_news_list result:', res.result);
+                  // 绑定数据
+                  that.data.column[0].option = res.result.data
+                  that.setData(that.data);
+
+            }).catch(err => {
+                  console.error('callFunction get_news_list error：', err)
+            })
+
+            // 绑定上部的内容
+
+
       },
       // tabl 的select跳转事件
       tapInletsMk(e) {

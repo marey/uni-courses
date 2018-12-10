@@ -12,51 +12,43 @@ cloud.init()
  * event 参数包含小程序端调用传入的 data
  * 
  */
-exports.main = (event, context) => {
-      console.log(event)
-      console.log(context)
-
-      return new Promise((resolve, reject) => {
-            // 可执行其他自定义逻辑
-            // console.log 的内容可以在云开发云函数调用日志查看
-
-            // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
-            const wxContext = cloud.getWXContext()
-            const db = cloud.database()
-
-
-            // get the user info
-            var result = null;
-            var result = db.collection('users').where({
-                  open_id: wxContext.OPENID // 填入当前用户 openid
-            }).get()
-                  .then(res => {
-                        result = res.data
-                        console.log()
-                  })
-      })
-
-      // 可执行其他自定义逻辑
-      // console.log 的内容可以在云开发云函数调用日志查看
-
+// get wx context
+function get_wx_context(event, context) {
       // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）
       const wxContext = cloud.getWXContext()
-      const db = cloud.database()
-
-
-      // get the user info
-      var result = null;
-      var result = db.collection('users').where({
-                  open_id: wxContext.OPENID // 填入当前用户 openid
-            }).get()
-            .then(res => {
-                  result = res.data
+      return new Promise(function(resolve, reject) {
+            // return the result
+            resolve({
+                  event,
+                  openid: wxContext.OPENID,
+                  appid: wxContext.APPID,
+                  unionid: wxContext.UNIONID,
+                  test:"test"
             })
-      // out put the log
-      console.log("=========================")
-      console.log(result)
+      })
+}
 
+/**
+ * get user info
+ */
+function get_user_info(data) {
+      // 可执行其他自定义逻辑
+      const db = cloud.database({
+            env: 'uni-courses-59eab4'
+      })
 
+      console.log("get_user_info");
+      console.log(data)
+      return new Promise((resolve, reject) => {
+            console.log("=============" + data.openid)
+            db.collection('users').where({
+                  open_id: data.openid // 填入当前用户 openid
+            }).get()
+      })
+}
+
+exports.main = (event, context) => {
+      const wxContext = cloud.getWXContext()
       return {
             event,
             openid: wxContext.OPENID,

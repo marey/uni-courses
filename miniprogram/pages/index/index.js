@@ -1,120 +1,57 @@
-//index.js
-const app = getApp()
+//app.js
+const utils = require('../../utils/utils.js')
 
+const buss = require('../../utils/business_utils.js')
+
+//index.js
+//获取应用实例
+var app = getApp();
 Page({
       data: {
-            avatarUrl: './user-unlogin.png',
-            userInfo: {},
-            logged: false,
-            takeSession: false,
-            requestResult: ''
+            swiper: {
+                  imgUrls: [
+                        'https://756e-uni-courses-59eab4-1258182215.tcb.qcloud.la/main_1.png?sign=17cae4d49b9c2da2f9585b40c4a8417e&t=1544407603',
+                        '/images/main_2.jpeg',
+                        '/images/main_3.png'
+                  ],
+                  indicatorDots: true,
+                  autoplay: true,
+                  interval: 5000,
+                  duration: 1000
+            },
+            column: [{
+                  class: 'num',
+                  option: []
+            }],
       },
+      onLoad(params) {
+            console.log("page load params:", params)
 
-      onLoad: function() {
-            if (!wx.cloud) {
-                  wx.redirectTo({
-                        url: '../chooseLib/chooseLib',
+            var url = utils.getCurrentPageUrl()
+            console.log("page load params url:", url)
+            buss.get_pages_setting({
+                        url: url
                   })
-                  return
-            }
-
-            // 获取用户信息
-            wx.getSetting({
-                  success: res => {
-                        if (res.authSetting['scope.userInfo']) {
-                              // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                              wx.getUserInfo({
-                                    success: res => {
-                                          this.setData({
-                                                avatarUrl: res.userInfo.avatarUrl,
-                                                userInfo: res.userInfo
-                                          })
-                                    }
-                              })
-                        }
-                  }
-            })
-      },
-
-      onGetUserInfo: function(e) {
-            if (!this.logged && e.detail.userInfo) {
-                  this.setData({
-                        logged: true,
-                        avatarUrl: e.detail.userInfo.avatarUrl,
-                        userInfo: e.detail.userInfo
+                  .then(res => {
+                        console.log("get_pages_setting", res)
+                        this.data.swiper = res.result.data[0].setting.swiper
                   })
-            }
-      },
 
-      onGetOpenid: function() {
-            // 调用云函数
+            var that = this;
+
             wx.cloud.callFunction({
-                  name: 'login',
-                  data: {},
-                  success: res => {
-                        console.log('[云函数] [login] user openid: ', res.result.openid)
-                        app.globalData.openid = res.result.openid
-                        wx.navigateTo({
-                              url: '../userConsole/userConsole',
-                        })
-                  },
-                  fail: err => {
-                        console.error('[云函数] [login] 调用失败', err)
-                        wx.navigateTo({
-                              url: '../deployFunctions/deployFunctions',
-                        })
-                  }
+                  // 要调用的云函数名称
+                  name: 'get_news_list',
+
+            }).then(res => {
+                  // output: res.result === 3
+                  console.log('callFunction get_news_list result:', res.result);
+                  // 绑定数据
+                  that.data.column[0].option = res.result.data
+                  that.setData(that.data);
+
+            }).catch(err => {
+                  console.error('callFunction get_news_list error：', err)
             })
-      },
-
-      // 上传图片
-      doUpload: function() {
-            // 选择图片
-            wx.chooseImage({
-                  count: 1,
-                  sizeType: ['compressed'],
-                  sourceType: ['album', 'camera'],
-                  success: function(res) {
-
-                        wx.showLoading({
-                              title: '上传中',
-                        })
-
-                        const filePath = res.tempFilePaths[0]
-
-                        // 上传图片
-                        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-                        wx.cloud.uploadFile({
-                              cloudPath,
-                              filePath,
-                              success: res => {
-                                    console.log('[上传文件] 成功：', res)
-
-                                    app.globalData.fileID = res.fileID
-                                    app.globalData.cloudPath = cloudPath
-                                    app.globalData.imagePath = filePath
-
-                                    wx.navigateTo({
-                                          url: '../storageConsole/storageConsole'
-                                    })
-                              },
-                              fail: e => {
-                                    console.error('[上传文件] 失败：', e)
-                                    wx.showToast({
-                                          icon: 'none',
-                                          title: '上传失败',
-                                    })
-                              },
-                              complete: () => {
-                                    wx.hideLoading()
-                              }
-                        })
-
-                  },
-                  fail: e => {
-                        console.error(e)
-                  }
-            })
-      },
-
-})
+      }
+});
