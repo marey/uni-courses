@@ -1,0 +1,31 @@
+{
+      "course_code": "GSOE9820",
+      "pre_decription": "",
+      "title": "A professional organization for project management specialists is the",
+      "decription": "",
+      "choices": [
+            {
+                  "key": "A",
+                  "question": "PMI."
+            },
+            {
+                  "key": "B",
+                  "question": "AMA."
+            },
+            {
+                  "key": "C",
+                  "question": "MIS."
+            },
+            {
+                  "key": "D",
+                  "question": "IPM."
+            },
+            {
+                  "key": "E",
+                  "question": "PMBOK."
+            }
+      ],
+      "answer": "A",
+      "question_typ": 0,
+      "chapter": "1"
+}

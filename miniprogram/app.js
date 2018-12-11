@@ -1,4 +1,6 @@
 //app.js
+const biz =  require('/utils/business_utils.js')
+
 App({
       onLaunch: function() {
 
@@ -24,6 +26,8 @@ App({
             })
             */
       },
+      db: null,
+      biz: biz,
       globalData: {
             userInfo: null
       }

@@ -1,5 +1,5 @@
 {
-      "name": "course_question_total_count",
+      "name": "get_user_exams_score_max",
       "version": "1.0.0",
       "description": "",
       "main": "index.js",

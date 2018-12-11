@@ -3,13 +3,9 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 
+function main(event) {
 
-/**
- * get_pages_setting
- */
-function get_pages_setting(event) {
-
-      console.log("get_pages_setting", event)
+      console.log("params", event)
 
       // 获取上下文的关系
       const wxContext = cloud.getWXContext()
@@ -20,22 +16,22 @@ function get_pages_setting(event) {
       })
 
       // 构造数据库参数
-      where_params = { 
-            url : event.url // 网页地址
+      where_params = {
+            open_id: wxContext.OPENID, // 网页地址
+            course_code: event.course_code
       }
 
       // 返回获取到的结果
       console.log("query params:", where_params)
       // 等待数据返回
-      return db.collection("pages_setting").where(where_params).get()
+      var result = db.collection("user_wrong_answers").where(where_params).count()
+      console.log("query result:", result)
+
+      return result
 }
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-      // return directly
-      if (event.url == null) {
-            return []
-      }
       // 返回列表
-      return await get_pages_setting(event)
+      return await main(event)
 }
