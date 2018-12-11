@@ -3,13 +3,18 @@
 var app = getApp();
 
 Page({
-  data: {
-   subject:'kemu1',//题目类型
-   type:'mnks'//题目类型
-  },
-  onLoad (params) {
-    var that = this;
-    this.data.subject = params.subject;
-    this.data.type = params.type;
-  }
+      data: {
+            userInfo: null,
+            // 课程编码
+            course_code: '',
+            type: 'mnks' //
+      },
+      onLoad(params) {
+            console.log(" params:",params)
+            this.data.course_code = params.course_code
+            this.data.type = params.type
+            this.data.userInfo = app.globalData.userInfo
+
+            this.setData(this.data)
+      }
 });

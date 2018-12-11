@@ -10,7 +10,7 @@
       <view class="index-exam-span">共{{num_total_questions}}题</view>
 </view>
 <view class="index-exam-inlets row">
-      <view bindtap="tapInletsMk" data-urlParem='{{item.subject}}' class="index-exam-inlets-mk col-hg-6">
+      <view bindtap="tapInletsMk" data-urlParem='{{course_code}}' class="index-exam-inlets-mk col-hg-6">
             <view>模拟考试</view>
             <view class="small">最高成绩: {{score_max}}分</view>
       </view>

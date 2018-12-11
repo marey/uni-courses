@@ -57,13 +57,14 @@ Page({
                         that.setData(that.data);
                   })
       },
-      // tabl 的select跳转事件
+      // 点击模拟考试，所出发的事件
       tapInletsMk(e) {
-            var subject = e.currentTarget.dataset.urlparem;
+            var course_code = e.currentTarget.dataset.urlparem
+            var url = '../../pages/answer_simulate_tip/simulate_tip?course_code=' 
+            + course_code + '&type=mnks'
             wx.navigateTo({
-                  url: `../../pages/answer_simulate_tip/simulate_tip?subject=kemu1&type=mnks`
+                  url: url
             })
-            // }
       },
       // 点击收藏按钮，所触发的事件
       tapInletsSC: function(e) {
