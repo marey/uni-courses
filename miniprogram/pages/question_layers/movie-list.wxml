@@ -1,0 +1,45 @@
+<!-- 渲染普通的单项数据 -->
+<template name="radio">
+      <view class="container">
+            <block wx:for="{{answers.active_question.choices}}">
+                        <view class="list {{answers.active_question.choices.options[index].isSelect?'active':''}}" data-option="{{item.tip}}" bindtap="tapRadio">
+                              <view class="number"> {{item.tip}}</view> {{item.content}}
+                        </view>
+            </block>
+      </view>
+</template>
+
+<!-- 页面题目模板 -->
+<template name="analysis">
+      <view class="analysis">
+            <view class="analysis-header">试题详解</view>
+            <view class="analysis-content">{{answers.active_question.tip}}</view>
+      </view>
+</template>
+<!-- 页面题目模板 -->
+<template name="movie-list">
+      <view class="header">
+            <view class="xuanz">选择</view>
+            {{answers.active_question.title}}
+      </view>
+      <template is="radio" />
+
+</template>
+
+<!-- 题目选择模层 -->
+<template name="layer">
+      <scroll-view class="status-lists" scroll-y="true">
+            <block wx:for="{{answers.allLists}}">
+                  <view bindtap="setActiveNum" data-option="{{index}}" wx:if="{{item.option_type == 0}}" class="status-list {{answers.activeNum == index?'active':''}}">{{index+1}}</view>
+                  <view bindtap="setActiveNum" data-option="{{index}}" wx:if="{{item.option_type == 1}}" class="status-list success  {{answers.activeNum == index?'active':''}}">{{index+1}}</view>
+                  <view bindtap="setActiveNum" data-option="{{index}}" wx:if="{{item.option_type == 2}}" class="status-list error  {{answers.activeNum == index?'active':''}}">{{index+1}}</view>
+            </block>
+      </scroll-view>
+</template>
+<!-- 试题详解 -->
+<template name="tip">
+      <view class="resolve">
+            <view class="h1">试题详解</view>
+            {{itemList.tip}}
+      </view>
+</template>

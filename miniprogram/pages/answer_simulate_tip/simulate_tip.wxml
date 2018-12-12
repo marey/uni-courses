@@ -8,4 +8,4 @@
     <view> 考试时间：120分钟</view>
     <view> 合格标准：满分100分，50分及格</view>
 </view>
-<navigator url="../../pages/my_course_simulate_exam/index?subject={{subject}}&type={{type}}" redirect class="simulate-btn">开始考试</navigator>
+<navigator url="../../pages/my_course_simulate_exam/index?course_code={{course_code}}&type={{type}}" redirect class="simulate-btn">开始考试</navigator>

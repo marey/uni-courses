@@ -60,19 +60,31 @@ function get_news_list(data) {
 
 function get_pages_setting(data) {
       return new Promise((resolve, reject) => {
-            wx.cloud.callFunction({
+            resolve(wx.cloud.callFunction({
                   // 要调用的云函数名称
                   name: 'get_pages_setting',
                   data: data
-            }).then(res => {
-                  // output: res.result === 3
-                  console.log('callFunction get_pages_setting result:', res.result);
-                  resolve(res)
+            }))
+      })
+}
 
-            }).catch(err => {
-                  console.error('callFunction get_pages_setting error：', err)
-                  reject(err)
-            })
+function get_user_collections(data) {
+      return new Promise((resolve, reject) => {
+            resolve(wx.cloud.callFunction({
+                  // 要调用的云函数名称
+                  name: 'get_user_collections',
+                  data: data
+            }))
+      })
+}
+
+function get_exam_question_list(data) {
+      return new Promise((resolve, reject) => {
+            resolve(wx.cloud.callFunction({
+                  // 要调用的云函数名称
+                  name: 'get_exam_question_list',
+                  data: data
+            }))
       })
 }
 
@@ -85,5 +97,7 @@ module.exports = {
       get_user_wrong_answers_count: get_user_wrong_answers_count,
       get_user_collections_count: get_user_collections_count,
       get_course_question_total_count: get_course_question_total_count,
-      get_user_exams_score_max: get_user_exams_score_max
+      get_user_exams_score_max: get_user_exams_score_max,
+      get_user_collections: get_user_collections,
+      get_exam_question_list: get_exam_question_list
 }

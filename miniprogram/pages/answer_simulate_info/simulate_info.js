@@ -530,6 +530,12 @@ Page({
             }
       },
       onLoad(params) {
+
+
+
+
+
+
             var that = this;
             this.data.subject = params.subject;
             this.data.type = params.type;

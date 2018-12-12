@@ -57,8 +57,13 @@ Page({
                   },
             })
             // console.log('onGotUserInfo global: ', app.globalData)
+            wx.navigateTo({
+                  url: '../../pages/my_course_simulate_exam/index?course_code=GSOE9820&type={{type}}',
+            })
+            /**
             wx.switchTab({
                   url: '/pages/index/index',
             });
+             */
       },
 });

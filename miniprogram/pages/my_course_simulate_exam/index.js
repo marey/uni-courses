@@ -31,6 +31,7 @@ Page({
                   start: 0, //初始题号
                   end: 0, //结束题号
                   allLists: [], //题号数据
+                  active_question: null,
                   activeNum: 0, //当前条数
                   showActiveNum: 0, //当前显示条数
                   onceLoadLength: 5, //一次向俩端加载条数
@@ -363,10 +364,11 @@ Page({
       },
       //切换题目逻辑
       getSubject: function(callBack) {
-            var that = this,
-                  start = this.data.answers.activeNum - this.data.answers.onceLoadLength,
-                  end = this.data.answers.activeNum + this.data.answers.onceLoadLength,
-                  params;
+            var that = this;
+            var start = this.data.answers.activeNum - this.data.answers.onceLoadLength;
+            var end = this.data.answers.activeNum + this.data.answers.onceLoadLength;
+            var params;
+
             start = start > 0 ? start : 0;
             end = end + 1 >= this.data.answers.allLists.length ? this.data.answers.allLists.length : end;
             //存放下次展示allallList数据
@@ -376,34 +378,30 @@ Page({
                   //后台需要int型
                   return data.id - 0
             });
-            https.find(this.data.answers.url, {
-                        questionID: params,
-                        subject: this.data.subject
-                  }, {
-                        isNewExam: this.data.isShowNewExam && this.data.isNewExam
-                  })
-                  .then(d => {
-                        //注册滑动结束回调
-                        if (this.$isLock) {
-                              this.isLockCall = ((d) => {
-                                    return this.callBackGetSubject(d, start, end);
-                              })(d)
-                        } else {
-                              this.callBackGetSubject(d, start, end);
-                        }
-                        if (typeof callBack == 'function') {
-                              callBack();
-                        }
-                  })
-                  .catch(e => {
-                        this.callBackError(e.message);
-                  })
+
+            // 绑定数据
+            this.data.answers.active_question = params;
+            this.data.isLoading = true;
+            this.data.answers.start = start;
+            this.data.answers.end = end;
+            this.data.answers.activeNum = this.data.answers.activeNum + 1;
+            this.setSwiperList();
+            this.setData(this.data);
+      },
+      //切换题目逻辑
+      shiftExamQuestions: function () {
+            var start = this.data.answers.start;
+            if (this.data.answers.allLists!=null 
+            && start < this.data.answer.allLists.length){
+                  // 绑定数据
+                  this.data.answers.active_question = this.data.answers.allLists[start];
+                  this.data.isLoading = true;
+                  this.data.answers.start = start + 1;
+                  this.setData(this.data);
+            }
       },
       //详情数据加载的回调
       callBackGetSubject: function(d, start, end) {
-            d.data.forEach((data, i) => {
-                  this.data.answers.allLists[start + i] = Object.assign({}, data, this.data.answers.allLists[start + i]);
-            })
             this.data.answers.list = d.data;
             this.data.isLoading = true;
             this.data.answers.list = d.data;
@@ -521,7 +519,7 @@ Page({
                   star = oldStar >= 0 ? oldStar : 0,
                   end = oldEnd <= this.data.answers.allLists.length ? oldEnd : this.data.answers.allLists.length;
             this.data.swiper.list = this.data.answers.allLists.slice(star, end + 1);
-
+            
             if (oldStar < 0) {
                   this.data.swiper.list.unshift({});
             }
@@ -530,35 +528,27 @@ Page({
             }
       },
       onLoad(params) {
-            var that = this;
-            this.data.subject = params.subject;
-            this.data.type = params.type;
-            if (params.subject == 'kemu3') {
-                  this.data.maxError = 5;
-            }
-            https.initialize(this.data.answers.onLoadUrl, {
-                        subject: params.subject,
-                        type: params.type
-                  }, {
-                        isNewExam: this.data.isShowNewExam && this.data.isNewExam,
-                        isShowNewExam: this.data.isShowNewExam
+
+            Promise.all([
+                        app.biz.get_exam_question_list(data),
+                        app.biz.get_user_collections(data)
+                  ])
+                  .then(function(values) {
+                        console.log("on_load results:", values)
+                        // 获取的考试的问题列表
+                        var exam_questions = values[0]
+                        var user_collections = values[1]
+                        var questions = exam_questions.data
+                        questions.forEach(function(v, i) {
+                              v.collection = user_collections.includes(v._id)
+                        })
+
+                        console.log("questions:", questions)
+                        // 绑定列表
+                        this.data.answers.allLists = questions
+
+                        this.shiftExamQuestions();
                   })
-                  .then(d => {
-                        this.data.answers.allLists = d.data;
-                        this.data.answers.success = d.success;
-                        this.data.answers.error = d.error;
-                        this.data.answers.loading = false;
-                        this.setData(this.data);
-                        this.getSubject(() => {
-                              this.data.startTime = new Date().getTime();
-                              this.setTime();
-                        });
-                  })
-                  .catch(e => {
-                        this.callBackError(e.message);
-                        // this.setData({ subtitle: '获取数据异常', movies: [], loading: false })
-                        // console.error(e)
-                  });
       },
       onHide() {
             clearInterval(this.swiperTime);
