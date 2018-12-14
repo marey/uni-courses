@@ -75,10 +75,10 @@ page{
   color: #666;
 }
 .list.active{
-  background: #fbfbfb;
+  background: #fff;
 }
 .list.active .number{
-  background: #eee;
+  background: #fff;
   color: #777;
 }
 .list.active-success{
@@ -276,4 +276,8 @@ page{
   top: 0;  
 	transform: translate3d(100%, 0 , 0px); 
 	-webkit-transform: translate3d(100%, 0 , 0px); 
+}
+.answer-container{
+      box-sizing: border-box;
+
 }

@@ -1,6 +1,6 @@
 <!-- 渲染普通的单项数据 -->
 <template name="radio">
-      <view class="container">
+      <view class="answer-container">
             <block wx:for="{{choices}}">
                         <view class="list active" data-option="{{item.key}}" bindtap="tapRadio">
                               <view class="number"> {{item.key}}</view> {{item.value}}
