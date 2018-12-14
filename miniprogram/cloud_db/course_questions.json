@@ -6,26 +6,26 @@
       "choices": [
             {
                   "key": "A",
-                  "question": "PMI."
+                  "value": "PMI."
             },
             {
                   "key": "B",
-                  "question": "AMA."
+                  "value": "AMA."
             },
             {
                   "key": "C",
-                  "question": "MIS."
+                  "value": "MIS."
             },
             {
                   "key": "D",
-                  "question": "IPM."
+                  "value": "IPM."
             },
             {
                   "key": "E",
-                  "question": "PMBOK."
+                  "value": "PMBOK."
             }
       ],
       "answer": "A",
-      "question_typ": 0,
+      "question_type": 0,
       "chapter": "1"
 }

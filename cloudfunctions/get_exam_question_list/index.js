@@ -12,26 +12,20 @@ const db = cloud.database({
  *  
  */
 function get_course_questions(params) {
-      return new Promise((resolve, reject) => {
-            console.log("params", params)
+      console.log("params", params)
 
-            // 构造数据库参数
-            where_params = {
-                  course_code: params.course_code
-            }
+      // 构造数据库参数
+      where_params = {
+            course_code: params.course_code
+      }
 
-            // 返回获取到的结果
-            console.log("query params:", where_params)
+      // 返回获取到的结果
+      console.log("query params:", where_params)
 
-            // 等待数据返回
-            var result = db.collection("course_questions")
-                  .where(where_params)
-                  .skip(100) // 最大获取100个题库
-                  .get()
-            console.log("query result:", result)
-
-            resolve(result)
-      })
+      // 等待数据返回
+      return db.collection("course_questions")
+            .where(where_params)
+            .get()
 }
 
 /**
@@ -144,5 +138,5 @@ exports.main = async(event, context) => {
       }
 
       // 返回列表
-      return await get_course_questions(event)
+      return await get_course_questions(params)
 }

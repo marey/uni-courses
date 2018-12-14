@@ -4,34 +4,13 @@
 <!-- 题目展示页面 -->
 <template name="movie-lists">
       <view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent'>
-            <view wx:if="{{ answers.start % 3 == 0}}" class='swiper-list prev' animation="{{swiper.animationO}}">
-                  <template is="movie-list" data="{{answers,layerlayer}}" />
-            </view>
-            <view wx:if="{{answers.start % 3  == 1}}" class='swiper-list' animation="{{swiper.animationT}}">
-                  <template is="movie-list" data="{{answers,layerlayer}}" />
-            </view>
-            <view wx:if="{{answers.start % 3  == 2}}" class='swiper-list next' animation="{{swiper.animationS}}">
-                  <template is="movie-list" data="{{answers,layerlayer}}" />
-            </view>
-      </view>
-
-      <view hidden="{{!layerlayer.isLayerShow}}" class="footer-layer" bindtap="layerFooterClick"></view>
-      <view class="footer" animation="{{layerlayer.layerAnimation}}">
-            <view class="count">
-                  <view class="submit" bindtap="submitTip">交卷</view>
-                  <view class="time">{{time}}</view>
-
-                  <view class="page" bindtap='pageClick'>{{answers.start + 1}}/{{answers.allLists.length}}</view>
-                  <view class="success">{{answers.success}}</view>
-                  <view class="error">{{answers.error}}</view>
-            </view>
-            <template is="layer" data="{{answers,layerlayer}}" />
+                  <view class='swiper-list' animation="{{swiper.animationT}}">
+                        <template is="movie-list" data="{{answers}}" />
+                  </view>
       </view>
 </template>
 
-
-
 <loading hidden="{{isLoading}}">加载中...</loading>
 <block wx:if="{{isLoading}}">
-      <template is="movie-lists" data="{{answers,layerlayer,swiper,isLoading,time}}" />
+      <template is="movie-lists" data="{{answers}}" />
 </block>

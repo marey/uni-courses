@@ -1,5 +1,5 @@
 /*引入answer_info的css文件*/
-@import "../answer_common/movie-list.wxss";
+@import "../question_layers/movie-list.wxss";
 .count .submit{
     float: left;
     height: 40rpx;
