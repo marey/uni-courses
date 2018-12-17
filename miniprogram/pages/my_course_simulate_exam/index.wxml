@@ -12,5 +12,5 @@
 
 <loading hidden="{{isLoading}}">加载中...</loading>
 <block wx:if="{{isLoading}}">
-      <template is="movie-lists" data="{{answers}}" />
+    <template is="movie-lists" data="{{answers}}" />
 </block>

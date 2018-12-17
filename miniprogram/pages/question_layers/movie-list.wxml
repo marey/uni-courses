@@ -12,8 +12,12 @@
 <!-- 页面题目模板 -->
 <template name="movie-list">
       <view class="header">
+        <view class="header-toolbar">
+            <view class="pre">上一题</view>
             <view class="xuanz">选择</view>
-            {{answers.active_question.title}}
+            <view class="next">下一题</view>
+        </view>
+        {{answers.active_question.title}}
       </view>
       <template is="radio" data="{{...answers.active_question}}" />
 </template>
