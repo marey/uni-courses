@@ -1,12 +1,32 @@
 <!-- 渲染普通的单项数据 -->
 <template name="radio">
       <view class="answer-container">
-            <block wx:for="{{choices}}">
+            <block wx:for="{{question.choices}}">
+                  <block wx:if="{{!question.answered}}">
                         <view class="list active" data-option="{{item.key}}" bindtap="tapRadio">
                               <view class="number"> {{item.key}}</view> {{item.value}}
                         </view>
+                  </block>
+                  <block wx:if="{{question.answered}}">
+                        <block wx:if="{{question.choices[index].selected}}">
+                              <view class="list {{!question.choices[index].correct?'error':'success'}}" data-option="{{item.key}}" bindtap="tapRadio">
+                                    <view class="number"> {{item.key}}</view> {{item.value}}
+                              </view>
+                        </block>
+                        <block wx:else>
+                              <view class="list {{question.choices[index].correct?'success':'active'}}" data-option="{{item.key}}" bindtap="tapRadio">
+                                    <view class="number"> {{item.key}}</view> {{item.value}}
+                              </view>
+                        </block>
+                  </block>
             </block>
       </view>
+</template>
+
+<template name="layer">
+      <scroll-view class="status-lists" scroll-y="true">
+            <view bindtap="setActiveNum" data-option="{{index}}" class="status-list success active">{{index+1}}</view>
+      </scroll-view>
 </template>
 
 <!-- 页面题目模板 -->
@@ -17,7 +37,7 @@
             <view class="xuanz">选择</view>
             <view class="next">下一题</view>
         </view>
-        {{answers.active_question.title}}
+            {{question.title}}
       </view>
-      <template is="radio" data="{{...answers.active_question}}" />
+      <template is="radio" data="{{question}}" />
 </template>

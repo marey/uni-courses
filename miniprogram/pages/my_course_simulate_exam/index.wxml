@@ -4,13 +4,22 @@
 <!-- 题目展示页面 -->
 <template name="movie-lists">
       <view class='swiper-lists' bindtouchend='touchEnd' bindtouchstart='setEvent'>
-                  <view class='swiper-list' animation="{{swiper.animationT}}">
-                        <template is="movie-list" data="{{answers}}" />
-                  </view>
+            <view class='swiper-list' animation="{{swiper.animationT}}">
+                  <template is="movie-list" data="{{question}}" />
+            </view>
+      </view>
+
+      <view class="footer" >
+            <view class="count">
+                  <view class="submit" bindtap="submitTip">交卷</view>
+                  <view class="time">{{time}}</view>
+
+                  <view class="page" bindtap='pageClick'>{{active_index + 1}}/{{num_questions_total}}</view>
+            </view>
       </view>
 </template>
 
 <loading hidden="{{isLoading}}">加载中...</loading>
 <block wx:if="{{isLoading}}">
-    <template is="movie-lists" data="{{answers}}" />
+      <template is="movie-lists" data="{{question,active_index,num_questions_total}}" />
 </block>

@@ -1,4 +1,5 @@
 //index.js
+const utils = require('../../utils/utils.js');
 //获取应用实例
 var app = getApp();
 Page({
@@ -16,73 +17,110 @@ Page({
                   isLayerShow: false, //默认弹窗
                   layerAnimation: {}, //弹窗动画
             },
-            answers: {
-                  start: 0, //初始题号
-                  allLists: [], //题号数据
-                  active_question: null,
-                  activeNum: 0, //当前条数
-                  showActiveNum: 0, //当前显示条数
-                  url: 'weixin/small/1.0/?m=SmallApp&c=weixin&a=getQuestion', //题目详情链接
-                  isShowTip: false //默认是否显示提示
-            }
+            question: null,
+            questions:[],
+            active_index: 0,
+            num_questions_total: 0,
+            wx_storage_key: "course_questions"
       },
       //单选逻辑
       tapRadio: function(e) {
-            //判断是否为已答题
-            if (this.data.answers.allLists[this.data.answers.activeNum].isNoFirst) {
-                  return false;
-            }
-            var thisOption = e.currentTarget.dataset.option,
-                  list = this.data.answers.allLists[this.data.answers.activeNum].options.map(function(option, i) {
-                        if (thisOption == option.tip) {
-                              if (!option.isSelect) {
-                                    // option.isActive = true;
-                                    option.isSelect = true;
-                              } else {
-                                    // option.isActive = false;
-                                    option.isSelect = false;
-                              }
+            var selected = e.currentTarget.dataset.option
+            var answer = this.data.question.answer
+            console.log("answer :", answer)
+            var choices = this.data.question.choices.map(function (option, i) {
+                  
+                  option.selected = false
+                  option.correct = false
+                  if (selected == option.key) {
+                        option.selected = true
+                        console.log("equals :", selected, answer, option.key, selected ==  answer)
+                        if (selected == answer) {
+                              option.correct = true
                         }
-                        return option
-                  });
-            this.data.answers.allLists[this.data.answers.activeNum].options = list;
-            this.tapSelect(e);
+                  }
+                  return option
+            });
+
+            this.data.question.answered = true
+
+            console.log("data   ",this.data)
+
+            this.data.question.choices = choices
+            this.data.questions[this.data.active_index] = this.data.question
+
+            this.setData(this.data)
+
+            // save data
+
+            // save data
       },
-      onLoad(params) {
+      /**
+       * 加载题库的数据
+       */
+      load_questions: function (questions) {
+            var that = this
 
-            var that = this;
+            that.data.isLoading = true
+            // 绑定页面的长度
+            that.data.num_questions_total = questions.length
+            // all list
+            that.data.questions = questions;
 
-            var data = {
-                  course_code: params.course_code
+            // 输出日子
+            console.log("load_questions:", questions)
+
+            // 判断当前的长度
+            if (questions.length > that.data.active_index) {
+                  that.data.question = JSON.parse(JSON.stringify(questions[that.data.active_index]))
+            } else {
+                  // 判断是否是最后一个
+                  if (that.data.active_index == that.length) {
+                        // 准备交卷
+                        // TODO
+                  }
             }
-            Promise.all([
-                        app.biz.get_exam_question_list(data),
-                        app.biz.get_user_collections(data)
-                  ])
-                  .then(function(values) {
-                        console.log("on_load results:", values)
-                        // 获取的考试的问题列表
-                        var exam_questions = values[0]
-                        var user_collections = values[1]
-                        var questions = exam_questions.result.data
+            console.log("data result:", that.data)
+            // 绑定列表
+            that.setData(that.data)
 
-                        console.log("questions:", questions)
+          
+      },
 
-                        that.data.isLoading = true
-                        // 绑定列表
-                        that.data.answers.allLists = questions
-                        that.data.answers.active_question = JSON.parse(JSON.stringify(questions[that.data.answers.start]))
-                        // 绑定列表
-                        that.setData(that.data)
+      onLoad(params) {
+            // 初始化index
+            this.data.active_index = 0
+            // 如果获取不到数据，从网上获取，然后保存到本地
+           
+            try {
+                  var data = {
+                        course_code: params.course_code
+                  }
+                  var that = this
 
-                        console.log("data result:", that.data)
-                  })
+                  Promise.all([
+                              app.biz.get_exam_question_list(data),
+                              app.biz.get_user_collections(data)
+                        ])
+                        .then(function(values) {
+                              console.log("on_load results:", values)
+                              // 获取的考试的问题列表
+                              var exam_questions = values[0]
+                              var user_collections = values[1]
+                              var questions = exam_questions.result.data
 
+                              console.log("questions:", questions)
+                              // 绑定数据
+                              that.load_questions(questions)
+                        })
+            } catch (e) {
+                  // Do something when catch error
+            }
       },
       onHide() {
             clearInterval(this.swiperTime);
       },
       onUnload() { //页面卸载
             clearInterval(this.swiperTime);
-      }
+      },
 });
