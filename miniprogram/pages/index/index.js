@@ -39,6 +39,16 @@ Page({
 
             var that = this;
 
+            // 获取新闻列表
+            buss.get_news_list() 
+            .then(
+                  res => {
+                        console.log("get_news_list", res)
+                        that.data.column[0].option = res.data.data
+                        that.setData(that.data);
+                  }
+            )
+            /**
             wx.cloud.callFunction({
                   // 要调用的云函数名称
                   name: 'get_news_list',
@@ -53,5 +63,6 @@ Page({
             }).catch(err => {
                   console.error('callFunction get_news_list error：', err)
             })
+             */
       }
 });
