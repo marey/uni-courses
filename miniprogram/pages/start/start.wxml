@@ -14,7 +14,7 @@
       <view class="bd">
          <image class="smalltitle" src="/images/more/confirm-word1.png"></image>
          <button class="confirm-btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" >开启答题之旅</button>
-        <text class="copyright">@天天向上 版权所有</text>
+        <text class="copyright">@Never Fail 版权所有</text>
       </view>
     </view>
   </block>
