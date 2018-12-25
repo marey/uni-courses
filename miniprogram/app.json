@@ -12,10 +12,6 @@
             "pages/answer_info/info",
             "pages/main/index",
             "pages/my_course_main/index",
-            "pages/userConsole/userConsole",
-            "pages/storageConsole/storageConsole",
-            "pages/databaseGuide/databaseGuide",
-            "pages/addFunction/addFunction",
             "pages/chooseLib/chooseLib",
             "pages/news_view/index"
       ],
