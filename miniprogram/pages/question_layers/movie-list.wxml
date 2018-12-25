@@ -32,11 +32,7 @@
 <!-- 页面题目模板 -->
 <template name="movie-list">
       <view class="header">
-        <view class="header-toolbar">
-            <view class="pre">上一题</view>
             <view class="xuanz">选择</view>
-            <view class="next">下一题</view>
-        </view>
             {{question.title}}
       </view>
       <template is="radio" data="{{question}}" />

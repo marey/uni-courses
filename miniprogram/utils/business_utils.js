@@ -1,3 +1,35 @@
+const API_URL = 'https://murui.bitxspace.com'
+
+function login(data) {
+      return Q.Promise(function (resolve, reject, notify) {
+            wx.request({
+                  url: API_URL + '/' + type,
+                  data: params,
+                  header: {
+                        'Content-Type': 'application/json'
+                  },
+                  method: method,
+                  success: resolve,
+                  fail: reject
+            })
+      })
+}
+
+function get_news_list(params) {
+      return new Promise(function (resolve, reject, notify) {
+            wx.request({
+                  url: API_URL + '/news/list',
+                  data: params,
+                  header: {
+                        'Content-Type': 'application/json'
+                  },
+                  method: 'GET',
+                  success: resolve,
+                  fail: reject
+            })
+      })
+}
+
 function get_user_wrong_answers_count(data) {
       return new Promise((resolve, reject) => {
             resolve(
@@ -47,6 +79,7 @@ function get_user_exams_score_max(data) {
 }
 
 
+/** 
 function get_news_list(data) {
       return new Promise((resolve, reject) => {
             resolve(
@@ -57,6 +90,7 @@ function get_news_list(data) {
             )
       })
 }
+*/
 
 function get_pages_setting(data) {
       return new Promise((resolve, reject) => {
@@ -90,9 +124,8 @@ function get_exam_question_list(data) {
 
 module.exports = {
       //获得登录数据
-      get_news_list(data) {
-            return get_news_list(data);
-      },
+      // 获取新闻的列表
+      get_news_list: get_news_list,
       get_pages_setting: get_pages_setting,
       get_user_wrong_answers_count: get_user_wrong_answers_count,
       get_user_collections_count: get_user_collections_count,
