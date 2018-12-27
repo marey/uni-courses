@@ -1,7 +1,7 @@
 const API_URL = 'https://test.shifubang.com'
 
 function login(data) {
-      return Q.Promise(function (resolve, reject, notify) {
+      return Q.Promise(function(resolve, reject, notify) {
             wx.request({
                   url: API_URL + '/' + type,
                   data: params,
@@ -16,7 +16,7 @@ function login(data) {
 }
 
 function get_news_list(params) {
-      return new Promise(function (resolve, reject, notify) {
+      return new Promise(function(resolve, reject, notify) {
             wx.request({
                   url: API_URL + '/news/list',
                   data: params,
@@ -29,34 +29,37 @@ function get_news_list(params) {
             })
       })
 }
-function get_my_courses(params){
-  return new Promise(function (resolve, reject, notify) {
-    wx.request({
-      url: API_URL + '/user/courses/'+params.openId,
-      data: params,
-      header: {
-        'Content-Type': 'application/json'
-      },
-      method: 'GET',
-      success: resolve,
-      fail: reject
-    })
-  })
+
+function get_my_courses(params) {
+      return new Promise(function(resolve, reject, notify) {
+            wx.request({
+                  url: API_URL + '/user/courses/' + params.openId,
+                  data: params,
+                  header: {
+                        'Content-Type': 'application/json'
+                  },
+                  method: 'GET',
+                  success: resolve,
+                  fail: reject
+            })
+      })
 }
+
 function get_my_course_info(params) {
-  return new Promise(function (resolve, reject, notify) {
-    wx.request({
-      url: API_URL + '/user/courses/' + params.openId,
-      data: params,
-      header: {
-        'Content-Type': 'application/json'
-      },
-      method: 'GET',
-      success: resolve,
-      fail: reject
-    })
-  })
+      return new Promise(function(resolve, reject, notify) {
+            wx.request({
+                  url: API_URL + '/user/courses/' + params.openId,
+                  data: params,
+                  header: {
+                        'Content-Type': 'application/json'
+                  },
+                  method: 'GET',
+                  success: resolve,
+                  fail: reject
+            })
+      })
 }
+
 function get_user_wrong_answers_count(data) {
       return new Promise((resolve, reject) => {
             resolve(
