@@ -60,15 +60,47 @@ function get_my_course_info(params) {
       })
 }
 
-function get_user_wrong_answers_count(data) {
-      return new Promise((resolve, reject) => {
-            resolve(
-                  wx.cloud.callFunction({
-                        // 要调用的云函数名称
-                        name: 'get_user_wrong_answers_count',
-                        data: data
-                  })
-            )
+/**
+ * 获取用户对应的course的错题的个数
+ */
+function get_user_wrong_answers_count(params) {
+      var data = {
+            course_code: params.courseCode,
+            open_id: params.openId
+      }
+      return new Promise(function (resolve, reject, notify) {
+            wx.request({
+                  url: API_URL + '/user/wrong/answeers/count',
+                  data: data,
+                  header: {
+                        'Content-Type': 'application/json'
+                  },
+                  method: 'GET',
+                  success: resolve,
+                  fail: reject
+            })
+      })
+}
+
+/**
+ * 获取用户对应的course的错题列表
+ */
+function get_user_wrong_answers(params) {
+      var data = {
+            course_code: params.courseCode,
+            open_id: params.openId
+      }
+      return new Promise(function (resolve, reject, notify) {
+            wx.request({
+                  url: API_URL + '/user/wrong/answeers',
+                  data: data,
+                  header: {
+                        'Content-Type': 'application/json'
+                  },
+                  method: 'GET',
+                  success: resolve,
+                  fail: reject
+            })
       })
 }
 
@@ -158,6 +190,7 @@ module.exports = {
       get_news_list: get_news_list,
       get_pages_setting: get_pages_setting,
       get_user_wrong_answers_count: get_user_wrong_answers_count,
+      get_user_wrong_answers: get_user_wrong_answers,
       get_user_collections_count: get_user_collections_count,
       get_course_question_total_count: get_course_question_total_count,
       get_user_exams_score_max: get_user_exams_score_max,
