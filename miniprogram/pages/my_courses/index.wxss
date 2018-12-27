@@ -1,1 +1,68 @@
-/* pages/answer_chapter/chapter.wxss */
+.sel-course{
+  width:100%;
+  margin-top:10rpx;
+  height:80rpx;
+  border-radius:5px; 
+  border:solid 1px #f0f0f0;
+  text-align: center;
+  line-height: 80rpx;
+  box-shadow: 0px 3px 5px #f0f0f0;
+  background-color: #fff;
+}
+.sel-course::after{
+  content:'123';
+  height:30rpx;
+  width:30rpx;
+  float:right;
+}
+.sel-course text{
+
+}
+.practice-box{
+  margin-top:20rpx;
+}
+.practice-item{
+  display: inline-block;
+  width:345rpx;
+  height:200rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  border:solid 1px #f0f0f0;
+  box-shadow: 0px 3px 5px #f0f0f0;
+}
+.practice-box .special{
+  margin-right:10rpx;
+}
+.practice-box .chapter{
+
+}
+.practice-box .random{
+  margin-right:10rpx;
+  margin-top:10rpx;
+}
+.practice-box .order{
+  margin-top:10rpx;
+}
+.secret-book{
+  margin-top:40rpx;
+}
+.secret-book .title{
+  text-align: left;
+}
+.secret-book .book-box{
+  margin-top:20rpx;
+  height:400rpx;
+  width:710rpx;
+  border-radius: 8rpx;
+  border:solid 1px #f0f0f0;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px #f0f0f0;
+}
+.secret-book .book-item{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  line-height: 100rpx;
+  margin:0 20rpx;
+  border-bottom:solid 1px #f0f0f0;
+}

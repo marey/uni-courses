@@ -1,3 +1,4 @@
+const buss = require('../../utils/business_utils.js')
 //获取应用实例
 var app = getApp();
 Page({
@@ -8,8 +9,9 @@ Page({
             }],
       },
       onLoad(params) {
+        /*
             var that = this;
-            this.get_my_courses(params)
+        buss.get_my_courses({ openId: 123})
             .then(function (data) {
                   console.log("get_my_courses then return:",data)
                   return that.get_my_course_info(data)
@@ -18,7 +20,7 @@ Page({
                   // set data
                   that.data.column[0].option = data.data
                   that.setData(that.data)
-            })
+            })*/
       },
       get_my_course_info(data) {
             console.log("get_my_course_info start ", data)
@@ -35,14 +37,10 @@ Page({
             })
       },
       get_my_courses(params) {
-            console.log("get_my_courses", params);
-            console.log("loginInfo:", app.globalData.loginInfo);
-            return new Promise((resolve, reject) => {
-                  resolve(app.db.collection('users').field({
-                        courses: true
-                  }).where({
-                        open_id: app.globalData.loginInfo.openid
-                  }).get())
-            })
+        buss.get_my_courses()
+          .then(res => {
+            that.data.column[0].option = res.data.data
+            that.setData(that.data);
+          })
       }
 });

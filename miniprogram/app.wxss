@@ -6,7 +6,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 200rpx 0;
+      padding: 20rpx;
       box-sizing: border-box;
 }
 
@@ -15,8 +15,8 @@
 page {
       font-family: Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
       font-size: 24rpx;
-      background: #eee;
       color: #333;
+      background: #FAFAFA;
 }
 
 /* CSS Document */

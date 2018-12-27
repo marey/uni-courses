@@ -1,4 +1,4 @@
-const API_URL = 'https://murui.bitxspace.com'
+const API_URL = 'https://test.shifubang.com'
 
 function login(data) {
       return Q.Promise(function (resolve, reject, notify) {
@@ -29,7 +29,34 @@ function get_news_list(params) {
             })
       })
 }
-
+function get_my_courses(params){
+  return new Promise(function (resolve, reject, notify) {
+    wx.request({
+      url: API_URL + '/user/courses/'+params.openId,
+      data: params,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET',
+      success: resolve,
+      fail: reject
+    })
+  })
+}
+function get_my_course_info(params) {
+  return new Promise(function (resolve, reject, notify) {
+    wx.request({
+      url: API_URL + '/user/courses/' + params.openId,
+      data: params,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET',
+      success: resolve,
+      fail: reject
+    })
+  })
+}
 function get_user_wrong_answers_count(data) {
       return new Promise((resolve, reject) => {
             resolve(
@@ -132,5 +159,6 @@ module.exports = {
       get_course_question_total_count: get_course_question_total_count,
       get_user_exams_score_max: get_user_exams_score_max,
       get_user_collections: get_user_collections,
-      get_exam_question_list: get_exam_question_list
+      get_exam_question_list: get_exam_question_list,
+      get_my_courses: get_my_courses
 }

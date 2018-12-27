@@ -28,7 +28,6 @@ Page({
             console.log("page load params:", params)
 
             var url = utils.getCurrentPageUrl()
-            console.log("page load params url:", url)
             buss.get_pages_setting({
                         url: url
                   })
