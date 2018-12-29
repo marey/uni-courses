@@ -1,49 +1,53 @@
 {
-      "pages": [
-            "pages/start/start",
-            "pages/my_course_simulate_exam/index",
-            "pages/index/index",
-            "pages/my_courses/index",
-            "pages/answer_chapter/chapter",
-            "pages/answer_classify/classify",
-            "pages/answer_simulate_info/simulate_info",
-            "pages/answer_mark/mark",
-            "pages/answer_simulate_tip/simulate_tip",
-            "pages/answer_info/info",
-            "pages/main/index",
-            "pages/my_course_main/index",
-            "pages/chooseLib/chooseLib",
-            "pages/news_view/index"
-      ],
-      "window": {
-            "backgroundColor": "#F6F6F6",
-            "backgroundTextStyle": "light",
-            "navigationBarBackgroundColor": "#F6F6F6",
-            "navigationBarTitleText": "高分必备题库",
-            "navigationBarTextStyle": "black"
+  "pages": [
+    "pages/peronal/index",
+    "pages/my_courses/index",
+    "pages/start/start",
+    "pages/my_course_simulate_exam/index",
+    "pages/index/index",
+    
+    "pages/answer_chapter/chapter",
+    "pages/answer_classify/classify",
+    "pages/answer_simulate_info/simulate_info",
+    "pages/answer_mark/mark",
+    "pages/answer_simulate_tip/simulate_tip",
+    "pages/answer_info/info",
+    "pages/main/index",
+    "pages/my_course_main/index",
+    "pages/chooseLib/chooseLib",
+    "pages/news_view/index"
+    
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "NeverFail",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#9B9B9B",
+    "selectedColor": "#000",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/index_unsel.png",
+        "selectedIconPath": "images/index_sel.png"
       },
-      "tabBar": {
-            "color": "#9B9B9B",
-            "selectedColor": "#000",
-            "borderStyle": "black",
-            "list": [
-                  {
-                        "pagePath": "pages/index/index",
-                        "text": "首页",
-                        "iconPath": "/images/index_unsel.png",
-                        "selectedIconPath": "images/index_sel.png"
-                  },
-                  {
-                        "pagePath": "pages/my_courses/index",
-                        "text": "我的课程",
-                        "iconPath": "/images/my_course_unsel.png",
-                        "selectedIconPath": "images/my_course_sel.png"
-                  },{
-                        "pagePath": "pages/my_courses/index",
-                        "text": "我的设置",
-                        "iconPath": "/images/my_setting_unsel.png",
-                        "selectedIconPath": "images/my_setting_sel.png"
-                  }
-            ]
+      {
+        "pagePath": "pages/my_courses/index",
+        "text": "我的课程",
+        "iconPath": "/images/my_course_unsel.png",
+        "selectedIconPath": "images/my_course_sel.png"
+      },
+      {
+        "pagePath": "pages/peronal/index",
+        "text": "我的设置",
+        "iconPath": "/images/my_setting_unsel.png",
+        "selectedIconPath": "images/my_setting_sel.png"
       }
+    ]
+  }
 }

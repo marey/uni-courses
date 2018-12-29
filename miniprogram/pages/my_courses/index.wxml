@@ -3,10 +3,10 @@
     <text>GSOEJ820 Project Management</text>
   </view>
   <view class="practice-box">
-    <view class="practice-item special"></view>
-    <view class="practice-item chapter"></view>
-    <view class="practice-item random"></view>
-    <view class="practice-item order"></view>
+    <view class="practice-item special">专项练习</view>
+    <view class="practice-item chapter">章节练习</view>
+    <view class="practice-item random">随机练习</view>
+    <view class="practice-item order">顺序练习</view>
   </view>
   <view class="secret-book">
     <text class="title">高分秘籍</text>
