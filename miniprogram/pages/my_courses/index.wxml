@@ -1,7 +1,7 @@
 <view class="container">
-  <view class="sel-course">
+  <navigator class="sel-course" url="../../pages/source_select/sourceSelect">
     <text>GSOEJ820 Project Management</text>
-  </view>
+  </navigator>
   <view class="practice-box">
     <view class="practice-item special">专项练习</view>
     <view class="practice-item chapter">章节练习</view>

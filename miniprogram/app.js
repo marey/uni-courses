@@ -29,6 +29,7 @@ App({
       db: null,
       biz: biz,
       globalData: {
-            userInfo: null
+            userInfo: null,
+            currentCourse:{}
       }
 })

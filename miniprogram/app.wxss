@@ -204,3 +204,15 @@ html .row {
       text-align: center;
       color: #999;
 }
+.left-right-margin{
+  margin-left:20rpx;
+  margin-right:20rpx;
+}
+.shadow{
+  background-color: #fff;
+  border-radius: 8rpx;
+  box-shadow: 0px 1px 5px #f0f0f0;
+}
+.hidden{
+  display: none;
+}

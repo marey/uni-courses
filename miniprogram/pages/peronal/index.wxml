@@ -1,0 +1,16 @@
+<view class="personal-box">
+  <image class="userinfo-avatar" src="../../images/main_2.jpeg" mode="cover"></image>
+  <view class="user-name">就是不会挂</view>
+</view>
+<view class="statistics-box shadow left-right-margin">
+  <view class="statistics-item">
+    <view class="value">1234</view>
+    <view class="title">累计答题数</view>
+  </view>
+  <view class="statistics-item">
+    <view class="value">1234</view>
+    <view class="title">错题数</view>
+  </view>
+</view>
+<view class="store-box shadow left-right-margin">我的错题</view>
+<view class="ours-box shadow left-right-margin">关于我们</view>

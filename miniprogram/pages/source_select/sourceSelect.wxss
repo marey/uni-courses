@@ -1,0 +1,37 @@
+
+ .middle-line{
+  vertical-align: middle;
+  display: inline-block;
+  width:50rpx;
+  border-top:solid 1px #9B9B9B;
+}
+ .middle-line:first-child{
+  margin-right: 15rpx;
+}
+.middle-line:last-child{
+  margin-left:15rpx;
+}
+.sourse-select .title{
+  font-size:30rpx;
+  text-align: center;
+  color:#9B9B9B;
+  margin-top:80rpx;
+}
+.course-box{
+  margin-top:80rpx;
+  font-size:28rpx;
+  margin-left:30rpx;
+  margin-right:30rpx;
+}
+.course-item{
+  border-bottom: solid 1px #e0e0e0;
+  padding:30rpx 0;
+}
+.course-item .sourse-code{
+  line-height: 40rpx;
+  font-weight: bold;
+}
+.course-item .sourse-name{
+  line-height: 40rpx;
+  color:#9B9B9B;
+}

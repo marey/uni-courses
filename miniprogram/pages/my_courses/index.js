@@ -9,6 +9,7 @@ Page({
             }],
       },
       onLoad(params) {
+        console.log(params.query);
         /*
             var that = this;
         buss.get_my_courses({ openId: 123})

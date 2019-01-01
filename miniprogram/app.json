@@ -1,18 +1,20 @@
 {
   "pages": [
-    "pages/peronal/index",
     "pages/my_courses/index",
+    "pages/index/index",
+    "pages/main/index",
+    "pages/source_select/sourceSelect",
+    "pages/answer/answer",
+    "pages/peronal/index",
+    
     "pages/start/start",
     "pages/my_course_simulate_exam/index",
-    "pages/index/index",
-    
     "pages/answer_chapter/chapter",
     "pages/answer_classify/classify",
     "pages/answer_simulate_info/simulate_info",
     "pages/answer_mark/mark",
     "pages/answer_simulate_tip/simulate_tip",
     "pages/answer_info/info",
-    "pages/main/index",
     "pages/my_course_main/index",
     "pages/chooseLib/chooseLib",
     "pages/news_view/index"
@@ -21,9 +23,9 @@
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "NeverFail",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#4F5766",
+    "navigationBarTextStyle": "#fff"
   },
   "tabBar": {
     "color": "#9B9B9B",
@@ -38,13 +40,13 @@
       },
       {
         "pagePath": "pages/my_courses/index",
-        "text": "我的课程",
+        "text": "题库",
         "iconPath": "/images/my_course_unsel.png",
         "selectedIconPath": "images/my_course_sel.png"
       },
       {
         "pagePath": "pages/peronal/index",
-        "text": "我的设置",
+        "text": "我的",
         "iconPath": "/images/my_setting_unsel.png",
         "selectedIconPath": "images/my_setting_sel.png"
       }

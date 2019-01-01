@@ -27,10 +27,40 @@
   box-sizing: border-box;
 }
 .index-banner {
-      height: 235px;
-      background-color: #fff;
+    height: 130px;
+    background-color: #f0f0f0;
+    margin-bottom: 30rpx;
+    margin-top: 30rpx;
+    overflow: hidden;
+    border-radius: 15rpx;
 }
 .index-banner image {
   width: 100%;
-  min-height: 200rpx;
+  height:100%;
+}
+.secret-book{
+  margin-top:40rpx;
+}
+.secret-book .title{
+  text-align: left;
+  padding-left:30rpx; 
+}
+.secret-book .book-box{
+  margin-top:20rpx;
+  width:710rpx;
+  border-radius: 8rpx;
+  border:solid 1px #f0f0f0;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px #f0f0f0;
+}
+.secret-book .book-item{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  line-height: 100rpx;
+  margin:0 20rpx;
+  border-bottom:solid 1px #f0f0f0;
+}
+.secret-book .book-item:last-child{
+  border-bottom: none;
 }

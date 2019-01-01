@@ -79,3 +79,6 @@
   margin:0 20rpx;
   border-bottom:solid 1px #f0f0f0;
 }
+.secret-book .book-item:last-child{
+  border-bottom: none;
+}
