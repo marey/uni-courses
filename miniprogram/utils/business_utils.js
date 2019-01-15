@@ -48,7 +48,7 @@ function get_my_courses(params) {
 function get_my_course_info(params) {
       return new Promise(function(resolve, reject, notify) {
             wx.request({
-                  url: API_URL + '/user/courses/' + params.openId,
+              url: API_URL + '/user/courses_info/' + params.openId,
                   data: params,
                   header: {
                         'Content-Type': 'application/json'
@@ -59,7 +59,34 @@ function get_my_course_info(params) {
             })
       })
 }
-
+function get_course_chapter(params) {
+  return new Promise(function (resolve, reject, notify) {
+    wx.request({
+      url: API_URL + '/course_chapters/' + params.courseCode,
+      data: params,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET',
+      success: resolve,
+      fail: reject
+    })
+  })
+}
+function get_course_question_info(params) {
+  return new Promise(function (resolve, reject, notify) {
+    wx.request({
+      url: API_URL + '/course/question_info/' + params.id,
+      data: params,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET',
+      success: resolve,
+      fail: reject
+    })
+  })
+}
 /**
  * 获取用户对应的course的错题的个数
  */
@@ -196,5 +223,8 @@ module.exports = {
       get_user_exams_score_max: get_user_exams_score_max,
       get_user_collections: get_user_collections,
       get_exam_question_list: get_exam_question_list,
-      get_my_courses: get_my_courses
+      get_my_courses: get_my_courses,
+      get_my_course_info: get_my_course_info,
+      get_course_chapter: get_course_chapter,
+      get_course_question_info: get_course_question_info
 }

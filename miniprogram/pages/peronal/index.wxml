@@ -1,6 +1,6 @@
 <view class="personal-box">
-  <image class="userinfo-avatar" src="../../images/main_2.jpeg" mode="cover"></image>
-  <view class="user-name">就是不会挂</view>
+<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+  <view class="user-name">{{userInfo.nickName}}</view>
 </view>
 <view class="statistics-box shadow left-right-margin">
   <view class="statistics-item">

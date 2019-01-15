@@ -3,29 +3,35 @@ const buss = require('../../utils/business_utils.js')
 var app = getApp();
 Page({
       data: {
-            column: [{
-                  class: 'num',
-                  option: []
-            }],
+        course:{
+
+        },
+        column: [{
+          class: 'num',
+          option: []
+        }],
       },
       onLoad(params) {
-        console.log(params.query);
-        /*
-            var that = this;
-        buss.get_my_courses({ openId: 123})
-            .then(function (data) {
-                  console.log("get_my_courses then return:",data)
-                  return that.get_my_course_info(data)
-            }).then(function (data) {
-                  console.log("get_my_course_info then return:", data)
-                  // set data
-                  that.data.column[0].option = data.data
-                  that.setData(that.data)
-            })*/
+        
+      },
+      toSelectChapter(e){
+        wx.navigateTo({
+          url:"../chapter_select/chapterSelect?courseCode="+this.length
+        }); 
+      },
+      onShow(){
+        if (app.globalData.currentCourse.courseName){
+          this.setData({course:app.globalData.currentCourse});
+        }else{
+          buss.get_my_course_info({ openId:"ondUQ5RfEaWr8gOlHgkipkqOMNx0"}).then(res => {
+            var datas = res.data.data;
+            if(datas.length>0){
+              this.setData({course:datas[0]});
+            }
+          })
+        }
       },
       get_my_course_info(data) {
-            console.log("get_my_course_info start ", data)
-            console.log("get_my_course_info courses:  ", data.data[0].courses)
             return new Promise((resolve, reject) => {
                   const _ = app.db.command
                   resolve(app.db.collection('courses').field({
@@ -36,12 +42,5 @@ Page({
                         course_code: _.in(data.data[0].courses)
                   }).get())
             })
-      },
-      get_my_courses(params) {
-        buss.get_my_courses()
-          .then(res => {
-            that.data.column[0].option = res.data.data
-            that.setData(that.data);
-          })
       }
 });

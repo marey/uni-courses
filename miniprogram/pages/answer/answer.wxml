@@ -1,46 +1,50 @@
-<view class="answer-box {{marginBottom}} shadow left-right-margin">
-  <view class="single">单选题</view>
-  <view class="question">Which of the following represents correct order of stages within the project file cycle.</view>
-  <view class="option-box">
-    <view class="option-item success">Planning，Defining,Executing，Closing</view>
-    <view class="option-item">Planning，Defining,Executing，Closing</view>
-    <view class="option-item error">Planning，Defining,Executing，Closing</view>
-    <view class="option-item">Planning，Defining,Executing，Closing</view>
+<view bindtouchstart='touchStart' bindtouchend='touchEnd'>
+  <view class="answer-box {{marginBottom}} shadow left-right-margin">
+    <view class="single">单选题</view>
+    <view class="question">{{questionInfo.title}}</view>
+    <view class="option-box">
+      <view wx:for="{{questionInfo.choices}}" wx:key="item" data-code="{{item.code}}" data-question-id="{{item.questionId}}" class="option-item success">
+        {{item.value}}
+      </view>
+    
+      <!--<view class="option-item error">Planning，Defining,Executing，Closing</view>
+      <view class="option-item success">Planning，Defining,Executing，Closing</view>-->
+    </view>
   </view>
-</view>
-<view class="question-explain shadow left-right-margin {{questionExplain}}">
-  <view class="title"><view class="midden-line"></view>试题详解<view class="midden-line"></view></view>
-  <view class="right-answer">正确答案：C</view>
-  <view class="detail">
-  The project life cycle passes sequentially through four stages;Planning，Defining,Executing，and Closing.
+  <view class="question-explain shadow left-right-margin {{questionExplain}}">
+    <view class="title"><view class="midden-line"></view>试题详解<view class="midden-line"></view></view>
+    <view class="right-answer">正确答案：{{questionInfo.answer}}</view>
+    <view class="detail">
+      {{questionInfo.explain}}
+    </view>
   </view>
-</view>
-<view bindtap='hiddenQuestionIndex' class="zz-box {{zzHidden}}"></view>
-<view class="info-box">
-  <view class="tar-box" bindtap='showQuestionIndex'>
-    <view class="count-box">
-      <view class="right-logo"></view>
-      <view class="count-item">77</view>
+  <view bindtap='hiddenQuestionIndex' class="zz-box {{zzHidden}}"></view>
+  <view class="info-box">
+    <view class="tar-box" bindtap='showQuestionIndex'>
+      <view class="count-box">
+        <view class="right-logo"></view>
+        <view class="count-item">77</view>
+      </view>
+      <view class="count-box">
+        <view class="error-logo"></view>
+        <view class="count-item">23</view>
+      </view>
+      <view class="questioncount-box">
+        <view class="question-logo"></view>
+        <view class="count-item">{{currentIndex}}/88</view>
+      </view>
     </view>
-    <view class="count-box">
-      <view class="error-logo"></view>
-      <view class="count-item">23</view>
+    <view class="question-index-box {{questionIndexClass}}">
+      <view bindtap='selectQuestionIndex' data-qid="1" class="index-item success"></view>
+      <view bindtap='selectQuestionIndex' data-qid="2" class="index-item"></view>
+      <view bindtap='selectQuestionIndex' data-qid="3" class="index-item error"></view>
+      <view bindtap='selectQuestionIndex' data-qid="4" class="index-item"></view>
+      <view bindtap='selectQuestionIndex' data-qid="5" class="index-item"></view>
+      <view bindtap='selectQuestionIndex' data-qid="6" class="index-item"></view>
+      <view bindtap='selectQuestionIndex' data-qid="7" class="index-item"></view>
+      <view bindtap='selectQuestionIndex' data-qid="8" class="index-item"></view>
+      <view bindtap='selectQuestionIndex' data-qid="9" class="index-item"></view>
+      <view bindtap='selectQuestionIndex' data-qid="10" class="index-item"></view>
     </view>
-    <view class="questioncount-box">
-      <view class="question-logo"></view>
-      <view class="count-item">{{currentIndex}}/88</view>
-    </view>
-   </view>
-  <view class="question-index-box {{questionIndexClass}}">
-    <view bindtap='selectQuestionIndex' data-qid="1" class="index-item success"></view>
-    <view bindtap='selectQuestionIndex' data-qid="2" class="index-item"></view>
-    <view bindtap='selectQuestionIndex' data-qid="3" class="index-item error"></view>
-    <view bindtap='selectQuestionIndex' data-qid="4" class="index-item"></view>
-    <view bindtap='selectQuestionIndex' data-qid="5" class="index-item"></view>
-    <view bindtap='selectQuestionIndex' data-qid="6" class="index-item"></view>
-    <view bindtap='selectQuestionIndex' data-qid="7" class="index-item"></view>
-    <view bindtap='selectQuestionIndex' data-qid="8" class="index-item"></view>
-    <view bindtap='selectQuestionIndex' data-qid="9" class="index-item"></view>
-    <view bindtap='selectQuestionIndex' data-qid="10" class="index-item"></view>
   </view>
 </view>

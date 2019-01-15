@@ -1,10 +1,10 @@
 <view class="container">
-  <navigator class="sel-course" url="../../pages/source_select/sourceSelect">
-    <text>GSOEJ820 Project Management</text>
+  <navigator class="sel-course" url="../../pages/course_select/courseSelect">
+    <text>{{course.courseCode}}  {{course.courseName}}</text>
   </navigator>
   <view class="practice-box">
     <view class="practice-item special">专项练习</view>
-    <view class="practice-item chapter">章节练习</view>
+    <view bindtap='toSelectChapter' class="practice-item chapter">章节练习</view>
     <view class="practice-item random">随机练习</view>
     <view class="practice-item order">顺序练习</view>
   </view>
