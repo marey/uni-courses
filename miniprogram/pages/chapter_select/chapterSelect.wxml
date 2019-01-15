@@ -1,0 +1,14 @@
+
+
+
+dddd<view class="title">
+  <view class="middle-line"></view>
+  章节选择
+  <view class="middle-line"></view>
+</view>
+<view class="course-box">
+  <view wx:for="{{chapters}}" wx:key="item" data-id="{{item.id}}" data-chapter-name="{{item.chapterName}}" bindtap='selectChapter' class="course-item">
+    <view class="sourse-code">{{item.chapterName}}</view>
+    <view class="sourse-name">{{item.courseCode}}</view>
+  </view>
+</view>

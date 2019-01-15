@@ -40,8 +40,8 @@ Page({
   touchStart(e) {
     // console.log(e)
     this.setData({
-      "touchStartX": e.changedTouches[0].clientX,
-      "touchEndY": e.changedTouches[0].clientY
+      touchStartX: e.changedTouches[0].clientX,
+      touchEndY: e.changedTouches[0].clientY
     });
   },
   loadQuestion(id){
@@ -53,7 +53,7 @@ Page({
   touchEnd(e) {
     let x = e.changedTouches[0].clientX;
     let y = e.changedTouches[0].clientY;
-    let trunDir = this.getTouchData(x,y,this.touchStartX, this.touchEndY);
+    let trunDir = this.getTouchData(x,y,this.data.touchStartX, this.data.touchEndY);
     console.info(trunDir);
     if (trunDir=='left' || trunDir == 'right'){
       this.loadQuestion(trunDir=='left'?1:2);
@@ -64,6 +64,7 @@ Page({
  * 左滑还是右滑
  */
   getTouchData (endX, endY, startX, startY){
+    console.info(endX+","+endY+","+startX+","+startY);
     let turn = "";
     if (endX - startX > 50 && Math.abs(endY - startY) < 50) {      //右滑
       turn = "right";

@@ -1,0 +1,15 @@
+<view class="title">
+  <view class="middle-line"></view>
+  课程选择
+  <view class="middle-line"></view>
+</view>
+<view class="course-box">
+  <view data-course-code="JSOE9820" data-course-name="Project Management" bindtap='selectCourse' class="course-item">
+    <view class="sourse-code">JSOE9820</view>
+    <view class="sourse-name">Project Management</view>
+  </view>
+  <view data-course-code="JSOE9820-2" data-course-name="Project Management2" bindtap='selectCourse' class="course-item">
+    <view class="sourse-code">JSOE9820</view>
+    <view class="sourse-name">Project Management</view>
+  </view>
+</view>
